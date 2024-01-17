@@ -1,31 +1,23 @@
 import { useState } from 'react';
+import { saveAs } from 'file-saver';
 
 export default function App() {
   // define useState for text boxes
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('doge');
-  const [memeUrl, setMemeUrl] = useState('');
-
-  // Function to generate meme URL based on current state values
-  const generateMeme = () => {
-    const apiUrl = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.jpg`;
-    setMemeUrl(apiUrl);
-  };
 
   // Event handler for changing meme template
   const handleTemplateChange = (event) => {
     setMemeTemplate(event.target.value);
-    generateMeme();
   };
 
   // Event handler for downloading the generated meme
   const handleDownload = () => {
-    // Create a download link and trigger the download
-    const link = document.createElement('a');
-    link.href = memeUrl;
-    link.download = 'meme.jpg';
-    link.click();
+    saveAs(
+      `https://api.memegen.link/images/${memeTemplate}/${topText}/${bottomText}.jpg`,
+      'meme.jpg',
+    );
   };
 
   return (
@@ -40,7 +32,6 @@ export default function App() {
           onChange={(event) => setTopText(event.target.value)}
         />
         <br />
-        <hr />
         <label htmlFor="bottomText">Bottom Text</label>
         <br />
         <input
@@ -49,7 +40,6 @@ export default function App() {
           onChange={(event) => setBottomText(event.target.value)}
         />
         <br />
-        <hr />
         <label htmlFor="memeTemplate">Meme Template</label>
         <br />
         <input
@@ -57,9 +47,10 @@ export default function App() {
           value={memeTemplate}
           onChange={handleTemplateChange}
         />
-        <hr />
         <br />
         <br />
+      </div>
+      <div>
         <img
           src={`https://memegen.link/${memeTemplate}/${topText}/${bottomText}.jpg`}
           alt="Generated Meme"
