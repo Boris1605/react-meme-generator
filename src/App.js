@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('');
+  const [memeTemplate, setMemeTemplate] = useState('doge');
 
   const handleTemplateChange = (event) => {
     setMemeTemplate(event.target.value);
@@ -39,7 +39,7 @@ export default function App() {
           onChange={(event) => setBottomText(event.target.value)}
         />
         <br />
-        <label htmlFor="memeTemplate">Meme Template</label>
+        <label htmlFor="memeTemplate">Meme template</label>
         <br />
         <input
           id="memeTemplate"
@@ -53,7 +53,7 @@ export default function App() {
       <div>
         {topText || bottomText ? (
           <img
-            src={`https://memegen.link/${memeTemplate}/${topText}/${bottomText}.jpg`}
+            src={`https://api.memegen.link/images/${memeTemplate}/${topText}/${bottomText}.jpg`}
             alt="Generated Meme"
             data-test-id="meme-image"
           />
