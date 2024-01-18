@@ -24,15 +24,17 @@ export default function App() {
         <label htmlFor="topText">Top text</label>
         <br />
         <input
-          className="topText"
+          id="topText"
+          placeholder="Top text"
           value={topText}
           onChange={(event) => setTopText(event.target.value)}
         />
         <br />
-        <label htmlFor="bottomText">Bottom Text</label>
+        <label htmlFor="bottomText">Bottom text</label>
         <br />
         <input
-          className="bottomText"
+          id="bottomText"
+          placeholder="Bottom text"
           value={bottomText}
           onChange={(event) => setBottomText(event.target.value)}
         />
@@ -41,6 +43,7 @@ export default function App() {
         <br />
         <input
           id="memeTemplate"
+          placeholder="Template"
           value={memeTemplate}
           onChange={handleTemplateChange}
         />
