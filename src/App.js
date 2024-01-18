@@ -2,17 +2,14 @@ import { useState } from 'react';
 import { saveAs } from 'file-saver';
 
 export default function App() {
-  // define useState for text boxes
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('doge');
+  const [memeTemplate, setMemeTemplate] = useState('');
 
-  // Event handler for changing meme template
   const handleTemplateChange = (event) => {
     setMemeTemplate(event.target.value);
   };
 
-  // Event handler for downloading the generated meme
   const handleDownload = () => {
     saveAs(
       `https://api.memegen.link/images/${memeTemplate}/${topText}/${bottomText}.jpg`,
@@ -27,7 +24,8 @@ export default function App() {
         <label htmlFor="topText">Top text</label>
         <br />
         <input
-          id="topText"
+          className="topText"
+          placeholder="Top Text"
           value={topText}
           onChange={(event) => setTopText(event.target.value)}
         />
@@ -35,7 +33,8 @@ export default function App() {
         <label htmlFor="bottomText">Bottom Text</label>
         <br />
         <input
-          id="bottomText"
+          className="bottomText"
+          placeholder="Bottom Text"
           value={bottomText}
           onChange={(event) => setBottomText(event.target.value)}
         />
@@ -51,11 +50,18 @@ export default function App() {
         <br />
       </div>
       <div>
-        <img
-          src={`https://memegen.link/${memeTemplate}/${topText}/${bottomText}.jpg`}
-          alt="Generated Meme"
-          data-test-id="meme-image"
-        />
+        {topText || bottomText ? (
+          <img
+            src={`https://memegen.link/${memeTemplate}/${topText}/${bottomText}.jpg`}
+            alt="Generated Meme"
+            data-test-id="meme-image"
+          />
+        ) : (
+          <img
+            src="https://api.memegen.link/images/ds/small_file/high_quality.png"
+            alt="Default Meme"
+          />
+        )}
       </div>
       <div>
         <button onClick={handleDownload}>Download</button>
