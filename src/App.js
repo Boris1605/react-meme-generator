@@ -25,7 +25,6 @@ export default function App() {
         <br />
         <input
           className="topText"
-          placeholder="Top Text"
           value={topText}
           onChange={(event) => setTopText(event.target.value)}
         />
@@ -34,7 +33,6 @@ export default function App() {
         <br />
         <input
           className="bottomText"
-          placeholder="Bottom Text"
           value={bottomText}
           onChange={(event) => setBottomText(event.target.value)}
         />
