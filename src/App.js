@@ -60,6 +60,7 @@ export default function App() {
           <img
             src="https://api.memegen.link/images/ds/small_file/high_quality.png"
             alt="Default Meme"
+            data-test-id="meme-image"
           />
         )}
       </div>
