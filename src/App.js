@@ -1,17 +1,22 @@
+// Import necessary style and package
 import './index.css';
 import { useState } from 'react';
 import { saveAs } from 'file-saver';
 
 export default function App() {
+  // State variables for top text, bottom text and meme templaet
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('aag');
 
-  const handleTemplateChange = (event) => {
+  // Handler for changing the selected meme template
+  const templateChange = (event) => {
     setMemeTemplate(event.target.value);
   };
 
-  const handleDownload = () => {
+  // Handler for downloading generated meme
+  const downloader = () => {
+    // Using file-saver package to download meme image
     saveAs(
       `https://api.memegen.link/images/${memeTemplate}/${topText}/${bottomText}.jpg`,
       'meme.jpg',
@@ -19,6 +24,7 @@ export default function App() {
   };
 
   return (
+    // Applied styling with tailwind css
     <div className="relative bg-gray-900 min-h-screen flex items-center justify-center">
       <div className="bg-gray-700 rounded-lg p-6 shadow-md max-w-2xl w-full mt-8 mb-8 z-10">
         <h1 className="text-3xl font-bold underline mb-4 text-center text-gray-100">
@@ -59,7 +65,7 @@ export default function App() {
             id="memeTemplate"
             placeholder="Template"
             value={memeTemplate}
-            onChange={handleTemplateChange}
+            onChange={templateChange}
           />
         </div>
 
@@ -83,7 +89,7 @@ export default function App() {
 
         <div className="my-4 text-center">
           <button
-            onClick={handleDownload}
+            onClick={downloader}
             className="border bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
           >
             Download
