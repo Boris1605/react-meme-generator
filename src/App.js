@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('doge');
+  const [memeTemplate, setMemeTemplate] = useState('aag');
 
   const handleTemplateChange = (event) => {
     setMemeTemplate(event.target.value);
