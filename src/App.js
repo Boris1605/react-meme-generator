@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { saveAs } from 'file-saver';
 
 export default function App() {
-  // State variables for top text, bottom text and meme templaet
+  // State variables for top text, bottom text and meme template
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('aag');
